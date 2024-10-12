@@ -1,20 +1,3 @@
-<script setup>
-import { reactive } from 'vue';
-
-
-const state = reactive({count:0})
-
-</script>
-
 <template>
-  <p>Hello This Parth Makwana</p>
-  <button @click="state.count++">
-    Increase No
-  </button>
-  
-  <p>
-    {{ state.count }}
-  </p>
-
+  <h1 class="text-2xl" >Hello I'm Parth</h1>
 </template>
-
