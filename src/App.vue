@@ -1,3 +1,7 @@
+<script setup lang="ts">
+  import Navbar from './components/Navbar.vue';
+</script>
+
 <template>
-  <h1 class="text-3xl" >Hello I'm Parth</h1>
+  <Navbar />
 </template>
