@@ -1,3 +1,0 @@
-<template>
-    Hellow roeld
-</template>
