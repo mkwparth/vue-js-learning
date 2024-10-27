@@ -1,4 +1,5 @@
-[
+{
+  "jobs": [
     {
       "title": "Senior Vue Dev",
       "type": "Full-Time",
@@ -84,3 +85,4 @@
       }
     }
   ]
+}
