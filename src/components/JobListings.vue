@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import JobListing from './JobListing.vue';
 import { RouterLink } from 'vue-router';
@@ -19,7 +19,7 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const response = await axios.get('http://localhost:5000/jobs');
+        const response = await axios.get('/api/jobs');
         state.jobs = response.data;
     } catch (error) {
         console.log('Error fetching error', error);
