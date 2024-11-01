@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { RouterView } from 'vue-router';
+import Navbar from '@/components/Navbar.vue';
+</script>
+
 <template>
-  <h1 class="text-3xl" >Hello I'm Parth</h1>
+  <Navbar />
+  <RouterView />
 </template>
