@@ -19,7 +19,7 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const response = await axios.get('/api/jobs');
+        const response = await axios.get('https://vue-jobs-backend-server.onrender.com/jobs');
         state.jobs = response.data;
     } catch (error) {
         console.log('Error fetching error', error);

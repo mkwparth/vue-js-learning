@@ -45,7 +45,7 @@ const handleSubmit = async () => {
     }
 
     try {
-        const response = await axios.put(`/api/jobs/${jobId}`, updatedJob);
+        const response = await axios.put(`https://vue-jobs-backend-server.onrender.com/jobs/${jobId}`, updatedJob);
         // @todo-show toast
         toast.success('Job Updated Successfully')
         router.push(`/jobs/${response.data.id}`)
@@ -58,7 +58,7 @@ const handleSubmit = async () => {
 
 onMounted(async () => {
     try {
-        const response = await axios.get(`/api/jobs/${jobId}`);
+        const response = await axios.get(`https://vue-jobs-backend-server.onrender.com/jobs/${jobId}`);
         state.job = response.data;
         //populate input
         form.type = state.job.type;
