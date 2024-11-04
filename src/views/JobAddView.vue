@@ -35,7 +35,7 @@ const handleSubmit = async () => {
     }
 
     try {
-        const response = await axios.post('/api/jobs', newJob);
+        const response = await axios.post('https://vue-jobs-backend-server.onrender.com/jobs', newJob);
         // @todo-show toast
         toast.success('Job Added Successfully')
         router.push(`/jobs/${response.data.id}`)
