@@ -10,12 +10,10 @@ const form = reactive({
     description: '',
     salary: '',
     location: '',
-    company: {
-        name: '',
-        description: '',
-        contactEmail: '',
-        contactPhone: ''
-    }
+    company_name:'',
+    company_description: '',
+    contact_email: '',
+    contact_phone: '',    
 })
 const toast = useToast()
 
@@ -26,16 +24,15 @@ const handleSubmit = async () => {
         location: form.location,
         description: form.description,
         salary: form.salary,
-        company: {
-            name: form.company.name,
-            description: form.company.description,
-            contactEmail: form.company.contactEmail,
-            contactPhone: form.company.contactPhone
-        }
+        company_name: form.company_name,
+        company_description: form.company_description,
+        contact_email: form.contact_email,
+        contact_phone: form.contact_phone
     }
 
     try {
-        const response = await axios.post('https://vue-jobs-backend-server.onrender.com/jobs', newJob);
+        console.log(newJob)
+        const response = await axios.post('/api/jobs', newJob);
         // @todo-show toast
         toast.success('Job Added Successfully')
         router.push(`/jobs/${response.data.id}`)
@@ -108,26 +105,26 @@ const handleSubmit = async () => {
                     <div class="mb-4">
                         <label for="company" class="block text-gray-700 font-bold mb-2">Company Name</label>
                         <input type="text" id="company" name="company" class="border rounded w-full py-2 px-3"
-                            v-model="form.company.name" placeholder="Company Name" />
+                            v-model="form.company_name" placeholder="Company Name" />
                     </div>
 
                     <div class="mb-4">
                         <label for="company_description" class="block text-gray-700 font-bold mb-2">Company
                             Description</label>
-                        <textarea id="company_description" name="company_description" v-model="form.company.description"
+                        <textarea id="company_description" name="company_description" v-model="form.company_description"
                             class="border rounded w-full py-2 px-3" rows="4"
                             placeholder="What does your company do?"></textarea>
                     </div>
 
                     <div class="mb-4">
                         <label for="contact_email" class="block text-gray-700 font-bold mb-2">Contact Email</label>
-                        <input type="email" id="contact_email" name="contact_email" v-model="form.company.contactEmail"
+                        <input type="email" id="contact_email" name="contact_email" v-model="form.contact_email"
                             class="border rounded w-full py-2 px-3" placeholder="Email address for applicants"
                             required />
                     </div>
                     <div class="mb-4">
                         <label for="contact_phone" class="block text-gray-700 font-bold mb-2">Contact Phone</label>
-                        <input type="tel" id="contact_phone" name="contact_phone" v-model="form.company.contactPhone"
+                        <input type="tel" id="contact_phone" name="contact_phone" v-model="form.contact_phone"
                             class="border rounded w-full py-2 px-3" placeholder="Optional phone for applicants" />
                     </div>
 

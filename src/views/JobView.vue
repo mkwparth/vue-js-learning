@@ -16,23 +16,37 @@ const state = reactive({
     job: {},
     isLoading: true,
 });
-
 onMounted(async () => {
     try {
-        const response = await axios.get(`https://vue-jobs-backend-server.onrender.com/jobs/${jobId}`);
-        state.job = response.data;
+        const response = await axios.get(`/api/jobs/${jobId}`);
+        console.log('Job ID:', jobId);
+        console.log("Job response:", response.data);
+        state.job = {
+            title: response.data.title,
+            type: response.data.type,
+            location: response.data.location,
+            description: response.data.description,
+            salary: response.data.salary,
+            company_name: response.data.company_name,
+            company_description: response.data.company_description,
+            contact_email: response.data.contact_email,
+            contact_phone: response.data.contact_phone
+        };
+        console.log("Updated state.job:", state.job);
+
     } catch (error) {
-        console.error("Error fetching job", error)
+        console.error("Error fetching job", error);
     } finally {
-        state.isLoading = false;
+        state.isLoading = false; // Ensure loading state is updated
     }
-})
+});
+
 
 const deleteJob = async () => {
     try {
         const confirm = window.confirm('Are you sure you want to delete this job?');
         if (confirm) {
-            await axios.delete(`https://vue-jobs-backend-server.onrender.com/jobs/${jobId}`);
+            await axios.delete(`/api/jobs/${jobId}`);
             toast.success("Job Deleted Successfully");
             router.push('/jobs')
         }
@@ -79,11 +93,11 @@ const deleteJob = async () => {
                         <h3 class="text-xl font-bold mb-6">Company Info</h3>
 
                         <h2 class="text-2xl">
-                            {{ state.job.company.name }}
+                            {{ state.job.company_name }}
                         </h2>
 
                         <p class="my-2">
-                            {{ state.job.company.description }}
+                            {{ state.job.company_description }}
                         </p>
 
                         <hr class="my-4" />
@@ -91,20 +105,20 @@ const deleteJob = async () => {
                         <h3 class="text-xl">Contact Email:</h3>
 
                         <p class="my-2 bg-green-100 p-2 font-bold">
-                            {{ state.job.company.contactEmail }}
+                            {{ state.job.contact_email }}
                         </p>
 
                         <h3 class="text-xl">Contact Phone:</h3>
 
                         <p class="my-2 bg-green-100 p-2 font-bold">
-                            {{ state.job.company.contactPhone }}
+                            {{ state.job.contact_phone }}
                         </p>
                     </div>
 
                     <!-- Manage -->
                     <div class="bg-white p-6 rounded-lg shadow-md mt-6">
                         <h3 class="text-xl font-bold mb-6">Manage Job</h3>
-                        <RouterLink :to="`/jobs/edit/${state.job.id}`"
+                        <RouterLink :to="`/jobs/edit/${jobId}`"
                             class="bg-green-500 hover:bg-green-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
                             Edit
                             Job</RouterLink>
