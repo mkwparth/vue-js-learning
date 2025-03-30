@@ -10,9 +10,9 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://vue-jobs-backend-server.onrender.com',
+        target: 'https://vue-jobs-backend-server.onrender.com', // Set to local backend
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ''), // Removes /api from requests
       },
     },
   },
