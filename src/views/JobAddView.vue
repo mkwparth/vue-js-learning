@@ -32,7 +32,7 @@ const handleSubmit = async () => {
 
     try {
         console.log(newJob)
-        const response = await axios.post('/api/jobs', newJob);
+        const response = await axios.post(`${import.meta.env.VITE_PROD_URL}/jobs`, newJob);
         // @todo-show toast
         toast.success('Job Added Successfully')
         router.push(`/jobs/${response.data.id}`)

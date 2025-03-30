@@ -18,9 +18,7 @@ const state = reactive({
 });
 onMounted(async () => {
     try {
-        const response = await axios.get(`/api/jobs/${jobId}`);
-        console.log('Job ID:', jobId);
-        console.log("Job response:", response.data);
+        const response = await axios.get(`${import.meta.env.VITE_PROD_URL}/jobs/${jobId}`);
         state.job = {
             title: response.data.title,
             type: response.data.type,
@@ -32,8 +30,6 @@ onMounted(async () => {
             contact_email: response.data.contact_email,
             contact_phone: response.data.contact_phone
         };
-        console.log("Updated state.job:", state.job);
-
     } catch (error) {
         console.error("Error fetching job", error);
     } finally {
@@ -46,7 +42,7 @@ const deleteJob = async () => {
     try {
         const confirm = window.confirm('Are you sure you want to delete this job?');
         if (confirm) {
-            await axios.delete(`/api/jobs/${jobId}`);
+            await axios.delete(`${import.meta.env.VITE_PROD_URL}/jobs/${jobId}`);
             toast.success("Job Deleted Successfully");
             router.push('/jobs')
         }
